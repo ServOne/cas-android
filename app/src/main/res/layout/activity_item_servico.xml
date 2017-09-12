@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <Button
+            android:id="@+id/btn_solicitacao_novo"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="25sp"
+            android:layout_marginRight="10sp"
+            android:layout_marginLeft="5sp"
+            android:text=""
+            android:background="@drawable/ic_add"/>
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/item_servico_nome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nome"
+                android:maxLength="80"
+                android:maxLines="1"
+                android:textColor="@color/colorVermelho"
+                android:paddingTop="40px"/>
+
+            <TextView
+                android:id="@+id/item_subservico_nome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nome"
+                android:maxLength="80"
+                android:maxLines="1"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/item_subservico_descrition"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLength="80"
+                android:text="Descrição"
+                android:maxLines="2"
+                android:textSize="9sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>
