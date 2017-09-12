@@ -4,7 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/CasProject.iml" filepath="$PROJECT_DIR$/CasProject.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/cas-android-diego-master.iml" filepath="$PROJECT_DIR$/cas-android-diego-master.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cas-android.iml" filepath="$PROJECT_DIR$/cas-android.iml" />
     </modules>
   </component>
 </project>
