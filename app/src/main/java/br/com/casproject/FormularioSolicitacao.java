@@ -27,13 +27,17 @@ import java.util.concurrent.ExecutionException;
 
 import br.com.casproject.adapter.SubServicoAdapter;
 import br.com.casproject.converter.ServicoConverter;
+import br.com.casproject.converter.SolicitacaoConverter;
 import br.com.casproject.converter.SubServicoConverter;
+import br.com.casproject.converter.UsuarioConverter;
 import br.com.casproject.modelo.Servico;
+import br.com.casproject.modelo.Solicitacao;
 import br.com.casproject.modelo.SubServico;
+import br.com.casproject.modelo.Usuario;
 import br.com.casproject.repository.SessionRepository;
 import br.com.casproject.task.TaskGenerica;
 
-public class FormularioSolicitacao extends AppCompatActivity {
+public class FormularioSolicitacao extends AppCompatActivity implements TaskGenerica.TaskGenericaResultado{
 
     private Spinner spn_servico;
     private Spinner spn_subservico;
@@ -191,10 +195,37 @@ public class FormularioSolicitacao extends AppCompatActivity {
         jsd.put("service_id", this.servico.getId());
         jsd.put("servicesubcategory_id", this.subservico.getId());
 
-        TaskGenerica reqServer = new TaskGenerica();
+        TaskGenerica reqServer = new TaskGenerica(FormularioSolicitacao.this);
         reqServer.execute("core/create", "UserRequest", "", jsd.toString(), "");
-        Toast.makeText(FormularioSolicitacao.this, "Solicitacao salva!", Toast.LENGTH_SHORT).show();
-        finish();
+
+/*
+        try {
+
+            List<Solicitacao> solicitacoes = SolicitacaoConverter.converterJson(reqServer.get());
+
+//            Log.e("DIEGO",reqServer.get());
+
+            MainActivity.solicitacoesAbertas.add(solicitacoes.get(0));
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+*/
+
+    }
+
+    @Override
+    public void onResultado(String resultado, String classResultado) {
+
+        if (classResultado.equals("UserRequest")) {
+            List<Solicitacao> solicitacoes = SolicitacaoConverter.converterJson(resultado);
+            MainActivity.solicitacoesAbertas.add(solicitacoes.get(0));
+
+            Toast.makeText(FormularioSolicitacao.this, "Solicitacao salva!", Toast.LENGTH_SHORT).show();
+            finish();
+        }
     }
 
 }

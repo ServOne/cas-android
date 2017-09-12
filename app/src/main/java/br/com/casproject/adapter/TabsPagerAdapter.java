@@ -23,7 +23,7 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
             case 1:
                 return SolicitacaoFechadaFragment.newInstance();
             default:
-                return NovaSolicitacaoFragment.newInstance(/*this.activity*/);
+                return NovaSolicitacaoFragment.newInstance();
         }
     }
 

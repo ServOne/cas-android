@@ -34,15 +34,19 @@ public class MainActivity extends AppCompatActivity {
     static List<Servico> servicos = new ArrayList<Servico>();
     private SwipeRefreshLayout swipe;
 
+    private TabLayout tabs;
+    private ViewPager pager;
+    private TabsPagerAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         // Tabs
-        TabLayout tabs = (TabLayout) findViewById(R.id.tabs);
-        ViewPager pager = (ViewPager) findViewById(R.id.pager);
-        TabsPagerAdapter adapter = new TabsPagerAdapter(getSupportFragmentManager());
+        tabs = (TabLayout) findViewById(R.id.tabs);
+        pager = (ViewPager) findViewById(R.id.pager);
+        adapter = new TabsPagerAdapter(getSupportFragmentManager());
 
         pager.setAdapter(adapter);
         tabs.setupWithViewPager(pager);
@@ -59,12 +63,16 @@ public class MainActivity extends AppCompatActivity {
 
         if(solicitacoesAbertas.size() == 0 && solicitacoesFechadas.size() ==0 && subServicos.size() ==0  && servicos.size() == 0)
             buscaDadosWebService();
-
+//
     }
 
 
 
     public void buscaDadosWebService() {
+
+        pager.setAdapter(adapter);
+        tabs.setupWithViewPager(pager);
+
         TaskGenerica reqServer = new TaskGenerica();
         TaskGenerica reqServer2 = new TaskGenerica();
         TaskGenerica reqServer3 = new TaskGenerica();
@@ -87,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
 
             List<Solicitacao> solicitacoes = SolicitacaoConverter.converterJson(reqServer.get());
 
-            Log.e("DIEGO               ",reqServer.get());
+//            Log.e("DIEGO",reqServer.get());
 
             this.getSolicitacoesAbertas(solicitacoes);
             getSolicitacoesFechadas(solicitacoes);
